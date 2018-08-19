@@ -1,0 +1,20 @@
+<div ng-controller="authCtrl" class="container">
+  <div class="d-flex flex-column align-items-center mt-5">
+    <form name="loginForm" ng-submit="login()" novalidate>
+      <h3>Please sign in</h3>
+      <label class="mt-2" for="email">Email address</label>
+      <input type="email" name="email" class="form-control" ng-model="formData.email" placeholder="Email address" required autofocus>
+      <div ng-messages="loginForm.email.$error" style="color:red" role="alert" ng-if="loginForm.email.$touched">
+       <div ng-message="required">Please enter email.</div>
+       <div ng-message="email">This field must be a valid email address.</div>
+      </div>
+      <label class="mt-1" for="password">Password</label>
+      <input type="password" name="password" class="form-control" ng-model="formData.password" placeholder="Password" required>
+      <div ng-messages="loginForm.password.$error" style="color:red" role="alert" ng-if="loginForm.password.$touched">
+       <div ng-message="required">Please enter password.</div>
+      </div>
+      <span class="text-danger" ng-if="error">{{error}}</span>
+      <button class="btn btn-lg btn-primary btn-block mt-2" ng-disabled="!loginForm.$valid" type="submit">Sign in</button>
+    </form>
+  </div>
+</div>

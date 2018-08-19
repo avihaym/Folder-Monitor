@@ -1,0 +1,36 @@
+<navBar></navBar>
+<div ng-controller="homeCtrl" class="container">
+  <div class="d-flex flex-column align-items-center mt-5">
+    <div class="row">
+      <label class="mt-2" for="folder">Select Folder</label>
+      <!-- <input type="folder" name="folder" class="form-control" ng-model="folder" placeholder="/folder1" required> -->
+      <select class="form-control" ng-model="folder">
+        <option ng-repeat="folder in folders" value="{{folder}}">{{folder}}</option>
+      </select>
+    </div>
+    <span class="text-danger" ng-if="error">{{error}}</span>
+    <div class="row mt-2">
+      <a class="text-success" ng-click="start()"><i class="fa fa-play-circle-o fa-2x" aria-hidden="true"></i></a>
+      <a class="ml-2 text-danger" ng-click="stop()"><i class="fa fa-stop-circle-o fa-2x" aria-hidden="true"></i></a>
+    </div>
+    <div class="row">
+      <span ng-if="listening" class="text-primary">Listening...</span>
+    </div>
+    <table class="table mt-4">
+      <thead>
+        <tr>
+          <th scope="col">Status</th>
+          <th scope="col">File Name</th>
+          <th scope="col">Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="log in logs">
+          <td ng-bind-html="log.status | statusFilter"></td>
+          <td>{{log.file}}</td>
+          <td>{{log.time | date:'dd-MM-yyyy HH:mm:ss'}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
